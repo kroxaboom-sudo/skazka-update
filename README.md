@@ -1,24 +1,27 @@
 # Skazka Update
 
-**RU:** Общий механизм обновления Android-приложений Skazka.
+> RU — основной язык · EN — required second language
 
-**EN:** Shared update flow for Skazka Android applications.
+## RU
 
-## Что здесь будет / What belongs here
+Проверка версии, безопасное скачивание, верификация и передача APK системному установщику.
 
-- проверка доступной версии;
-- разбор release metadata;
-- передача загрузки в общий download engine;
-- проверка целостности и подписи;
-- передача APK системному установщику;
-- состояние обновления и диагностика.
+**Текущий статус:** репозиторий создан как целевая граница модуля. Рабочий код переносится из существующих проектов поэтапно, с тестами и без копирования project-specific зависимостей.
 
-## Граница / Boundary
+**Граница модуля:** client-side update flow; signing keys and release infrastructure remain private.
 
-Signing keys, release credentials и production release orchestration сюда не попадают. Они остаются в закрытом Skazka Ops и серверном контуре.
+Перед первым стабильным релизом здесь появятся собственные versioning, тесты, changelog и лицензия. До выбора лицензии публикация кода не означает автоматическое разрешение на его повторное использование.
 
-## Статус / Status
+## EN
 
-Миграция началась. Рабочий код переносится небольшими проверяемыми шагами. Пока API не помечен как stable, совместимость между версиями не гарантируется.
+Version checks, safe download, verification, and handoff to the Android system installer.
 
-Migration has started. Working code is being moved in small, verifiable steps. Until an API is marked stable, compatibility between versions is not guaranteed.
+**Current status:** this repository is the target module boundary. Working code is being extracted from existing projects incrementally, with tests and without copying project-specific dependencies.
+
+**Module boundary:** client-side update flow; signing keys and release infrastructure remain private.
+
+Before the first stable release, this repository will get its own versioning, tests, changelog, and license. Until a license is selected, publishing the source does not automatically grant reuse rights.
+
+## Development rules / Правила разработки
+
+See [DEVELOPMENT_RULES.md](DEVELOPMENT_RULES.md).
