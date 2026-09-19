@@ -4,24 +4,39 @@
 
 ## RU
 
-Проверка версии, безопасное скачивание, верификация и передача APK системному установщику.
+Переиспользуемый контур безопасного Android-обновления, вынесенный из Skazka Hub без UI, расписания и production release endpoint.
 
-**Текущий статус:** репозиторий создан как целевая граница модуля. Рабочий код переносится из существующих проектов поэтапно, с тестами и без копирования project-specific зависимостей.
+**Статус:** `0.1.0-preview`.
 
-**Граница модуля:** client-side update flow; signing keys and release infrastructure remain private.
+- `update-core` — проверка update manifest, политика одного доверенного GitHub Releases репозитория, разрешённые transfer-hosts и SHA-256.
+- `update-android` — проверка APK по размеру/hash/package/version/minSdk/signing identity и установка через системный PackageInstaller.
+- Пользовательское подтверждение установки обязательно.
+- Уведомления, фоновые расписания и конкретный feed остаются на уровне приложения.
 
-Перед первым стабильным релизом здесь появятся собственные versioning, тесты, changelog и лицензия. До выбора лицензии публикация кода не означает автоматическое разрешение на его повторное использование.
+Проверено на HOSTKEY: core self-test — PASS; `:update-android:assembleDebug` — PASS; `:update-android:lintDebug` — PASS.
 
 ## EN
 
-Version checks, safe download, verification, and handoff to the Android system installer.
+Reusable secure Android update building blocks extracted from Skazka Hub without app UI, scheduling, or a production release endpoint.
 
-**Current status:** this repository is the target module boundary. Working code is being extracted from existing projects incrementally, with tests and without copying project-specific dependencies.
+**Status:** `0.1.0-preview`.
 
-**Module boundary:** client-side update flow; signing keys and release infrastructure remain private.
+- `update-core` — update-manifest validation, one trusted GitHub Releases repository policy, allowed transfer hosts, and SHA-256.
+- `update-android` — APK size/hash/package/version/minSdk/signing-identity verification and system PackageInstaller handoff.
+- User confirmation is mandatory for installation.
+- Notifications, background scheduling, and the concrete update feed stay at the app layer.
 
-Before the first stable release, this repository will get its own versioning, tests, changelog, and license. Until a license is selected, publishing the source does not automatically grant reuse rights.
+Verified on HOSTKEY: core self-test — PASS; `:update-android:assembleDebug` — PASS; `:update-android:lintDebug` — PASS.
 
-## Development rules / Правила разработки
+## Coordinates / Координаты
+
+- `com.kroxaboom.skazka:update-core:0.1.0-preview`
+- `com.kroxaboom.skazka:update-android:0.1.0-preview`
+
+## Security boundary / Граница безопасности
+
+Signing keys, release credentials, private endpoints, server-side release tooling, and production configuration are not part of this repository.
 
 See [DEVELOPMENT_RULES.md](DEVELOPMENT_RULES.md).
+
+> A license will be selected before the first stable public release. Until then, publication of the source does not grant reuse rights.
