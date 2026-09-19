@@ -33,7 +33,8 @@ public final class ApkVerifier {
         }
 
         PackageManager packageManager = context.getPackageManager();
-        int flags = PackageManager.GET_SIGNING_CERTIFICATES | PackageManager.GET_SIGNATURES;
+        PackageManager.PackageInfoFlags flags =
+                PackageManager.PackageInfoFlags.of(PackageManager.GET_SIGNING_CERTIFICATES);
 
         PackageInfo candidate = packageManager.getPackageArchiveInfo(apk.getAbsolutePath(), flags);
         PackageInfo current = packageManager.getPackageInfo(context.getPackageName(), flags);
